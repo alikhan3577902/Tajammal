@@ -1,4 +1,4 @@
-require('keep_alive.js');
+require('./keep_alive.js');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 const sqlite3 = require('sqlite3').verbose();
@@ -6,8 +6,8 @@ const sqlite3 = require('sqlite3').verbose();
 // Replace with your bot token from BotFather
 const token = '7362304369:AAEmapXikz-aIIXgq0IvHi4BkMcvo3VDS20';
 // Replace with your channel usernames or IDs
-const channelId1 = '@TeAm_Ali_1';
-const channelId2 = '@teamali_support';
+const channelId1 = '@TajammalMods';
+const channelId2 = '@TajammalExtra';
 
 // Replace with your bot's username
 const botUsername = 'Tajammal_X_Database_Bot';
@@ -93,12 +93,8 @@ bot.onText(/\/start(?:\s+(\d+))?/, (msg, match) => {
         reply_markup: {
             inline_keyboard: [
                 [
-                    { text: 'ᗩᑕ丅Ꭵᐯᗴ', url: 'https://t.me/TeAm_Ali_1' },
-                    { text: 'ᗩᑕ丅Ꭵᐯᗴ', url: 'https://t.me/teamali_support' }
-                ],
-                [
-                    { text: 'ᗩᑕ丅Ꭵᐯᗴ', url: 'https://t.me/TeAm_Ali_1' },
-                    { text: 'ᗩᑕ丅Ꭵᐯᗴ', url: 'https://t.me/SeekhoTricks' }
+                    { text: 'ᗩᑕ丅Ꭵᐯᗴ', url: 'https://t.me/TajammalMods' },
+                    { text: 'ᗩᑕ丅Ꭵᐯᗴ', url: 'https://t.me/TajammalExtra' }
                 ],
                 [
                     { text: '💴 ᗩᑕ丅Ꭵᐯᗩ丅ᗴ 💶', callback_data: 'check_join' }
@@ -239,12 +235,11 @@ bot.on('callback_query', async (callbackQuery) => {
             });
         });
     } else if (callbackQuery.data === 'button3') {
-        bot.sendMessage(chatId, '⚠️ ＳＥＲＶＩＣＥＳ ＆ ＨＥＬＰ ⚠️\n\nEarn points through invites and referrals (1 invite = 5 point).\n\nBot charges:\nFresh SIM data: 15 points\nAll SIMs data & CNIC Data: 30 points\n\n⚠️ BUY POINT PRICES ⚠️\n50 POINTS: RS 50\n350 POINTS: RS 200\n500 POINTS: RS 400\n1000 POINTS: RS 800\n\nTo Buy Coins, Contact The Admin @Prog_xyz.\n\n😎 Buy VIP plan Unlimited Points. 😎\n\nAny One Facing Any Issues Or Problem Then Contect In Helpcenter CENTER CONTECT : @help_simdata_bot', {
+        bot.sendMessage(chatId, '⚠️ ＳＥＲＶＩＣＥＳ ＆ ＨＥＬＰ ⚠️\n\nEarn points through invites and referrals (1 invite = 5 point).\n\nBot charges:\nFresh SIM data: 15 points\nAll SIMs data & CNIC Data: 30 points\n\n⚠️ BUY POINT PRICES ⚠️\n50 POINTS: RS 50\n350 POINTS: RS 200\n500 POINTS: RS 400\n1000 POINTS: RS 800.\n\nFollow the Tajammal Mods channel on WhatsApp: https://whatsapp.com/channel/0029VaVFGy5ISTkS0xRQNW0l', {
             reply_markup: {
                 inline_keyboard: [
                     [
-                        { text: 'Help Center', url: 'https://t.me/help_simdata_bot' },
-                    { text: 'Buy Points', url: 'https://t.me/Prog_xyz' }]
+                    { text: 'SUPPORT', url: 'https://whatsapp.com/channel/0029VaVFGy5ISTkS0xRQNW0l' }]
                 ]
             }
         });
@@ -256,7 +251,7 @@ bot.onText(/\/bal @(\w+) (\d+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const adminId = msg.from.id;
 
-    if (adminId == 6843974523) { // Check if the user is admin
+    if (adminId == 6270640792) { // Check if the user is admin
         const targetUsername = match[1];
         const amount = parseInt(match[2]);
 
@@ -293,23 +288,6 @@ bot.sendMessageToChatWithId = function(chatId, text) {
 };
 
 
-const userMessagesChannelId = '-1002170123169'; // Replace 'YOUR_NEW_CHANNEL_ID' with the actual channel ID
-
-  // Listen for incoming messages to the bot
-  bot.on('message', (msg) => {
-      const chatId = msg.chat.id;
-      const username = msg.from.username;
-      const messageText = msg.text;
-
-      // Get current date
-      const currentDate = new Date().toDateString();
-
-      // Modify the message text to include the username and date
-      const messageToSend = `(${currentDate})\nUSER EXPOSED @${username} \n\nMessage: ${messageText}`;
-
-      // Send the modified message to the designated channel
-      bot.sendMessage(userMessagesChannelId, messageToSend);
-  });
 
 
 // Handle /back command for admin to get all users' balances
@@ -317,7 +295,7 @@ bot.onText(/\/back/, (msg) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
 
-    if (userId == 6843974523) { // Check if the user is admin
+    if (userId == 6270640792) { // Check if the user is admin
         db.all(`SELECT u.id, u.username, u.balance, 
                        (SELECT COUNT(*) FROM referrals r WHERE r.referrer_id = u.id) as referral_count 
                 FROM users u`, (err, rows) => {
@@ -376,7 +354,7 @@ bot.onText(/\/chat (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
 
-    if (userId == 6843974523) { // Check if the user is admin (replace with your admin user ID)
+    if (userId == 6270640792) { // Check if the user is admin (replace with your admin user ID)
         const message = match[1];
 
         // Send message to all users
@@ -393,7 +371,7 @@ bot.onText(/\/@(\w+) (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const adminId = msg.from.id;
 
-    if (adminId == 6843974523) { // Check if the user is admin
+    if (adminId == 6270640792) { // Check if the user is admin
         const targetUsername = match[1];
         const message = match[2];
 
@@ -422,7 +400,7 @@ bot.onText(/\/addpoints (\d+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const adminId = msg.from.id;
 
-    if (adminId == 6843974523) { // Check if the user is admin
+    if (adminId == 6270640792) { // Check if the user is admin
         const points = parseInt(match[1]);
 
         db.run(`UPDATE users SET balance = balance + ?`, [points], function(err) {
@@ -442,7 +420,7 @@ bot.onText(/\/ref @(\w+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const adminId = msg.from.id;
 
-    if (adminId == 6843974523) { // Check if the user is admin
+    if (adminId == 6270640792) { // Check if the user is admin
         const targetUsername = match[1];
 
         db.get(`SELECT id FROM users WHERE username = ?`, [targetUsername], (err, row) => {
@@ -477,16 +455,12 @@ bot.onText(/\/ref @(\w+)/, (msg, match) => {
         bot.sendMessage(chatId, `You are not authorized to use this command.`);
     }
 });
-
-
-
-
 // Handle /cut command to deduct points from a user by username
 bot.onText(/\/cut @(\w+) (\d+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const adminId = msg.from.id;
 
-    if (adminId == 6843974523) { // Check if the user is admin
+    if (adminId == 6270640792) { // Check if the user is admin
         const targetUsername = match[1];
         const amount = parseInt(match[2]);
 
