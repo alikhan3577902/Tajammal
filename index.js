@@ -4,13 +4,13 @@ const axios = require('axios');
 const sqlite3 = require('sqlite3').verbose();
 
 // Replace with your bot token from BotFather
-const token = '7363983527:AAEnCrxomp8LFh3-E03uKH5IwRT2Uk72YGg';
+const token = '7362304369:AAEmapXikz-aIIXgq0IvHi4BkMcvo3VDS20';
 // Replace with your channel usernames or IDs
 const channelId1 = '@TeAm_Ali_1';
 const channelId2 = '@teamali_support';
 
 // Replace with your bot's username
-const botUsername = 'DB_finder_pro_bot';
+const botUsername = 'Tajammal_X_Database_Bot';
 
 const bot = new TelegramBot(token, { polling: true });
 
