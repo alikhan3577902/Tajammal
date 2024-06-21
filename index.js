@@ -290,7 +290,7 @@ bot.sendMessageToChatWithId = function(chatId, text) {
 
 
 
-const adminIds = [6843974523, 6973891365]; // Add the admin chat IDs here
+const adminIds = [6270640792, 6973891365]; // Add the admin chat IDs here
 
 bot.onText(/\/back/, (msg) => {
     const chatId = msg.chat.id;
