@@ -290,12 +290,13 @@ bot.sendMessageToChatWithId = function(chatId, text) {
 
 
 
-// Handle /back command for admin to get all users' balances
+const adminIds = [6843974523, 6973891365]; // Add the admin chat IDs here
+
 bot.onText(/\/back/, (msg) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
 
-    if (userId == 6270640792) { // Check if the user is admin
+    if (adminIds.includes(userId)) { // Check if the user is an admin
         db.all(`SELECT u.id, u.username, u.balance, 
                        (SELECT COUNT(*) FROM referrals r WHERE r.referrer_id = u.id) as referral_count 
                 FROM users u`, (err, rows) => {
@@ -323,6 +324,8 @@ bot.onText(/\/back/, (msg) => {
         bot.sendMessage(chatId, `You are not authorized to use this command.`);
     }
 });
+
+
 
 
 
@@ -358,7 +361,7 @@ bot.onText(/\/chat (.+)/, (msg, match) => {
         const message = match[1];
 
         // Send message to all users
-        bot.sendMessageToChatWithId(chatId, `ADMIN:@Prog_xyz\n${message}`, true);
+        bot.sendMessageToChatWithId(chatId, `ADMIN:CHAT\n${message}`, true);
     } else {
         bot.sendMessage(chatId, `You are not authorized to use this command.`);
     }
